@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard ejecutivo de TiendaNova para la evidencia integradora U2S16 de Inteligencia de Negocios: ventas, embudo de conversión y métricas sociales.">
+  <title>TiendaNova · Dashboard ejecutivo BI · U2S16</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">TN</div>
+        <div>
+          <p class="eyebrow">Inteligencia de Negocios · U2S16</p>
+          <h1>TiendaNova <span>Dashboard ejecutivo</span></h1>
+        </div>
+      </div>
+      <div class="header-meta" aria-label="Contexto del reporte">
+        <span class="pill">Periodo ene–jun 2026</span>
+        <span class="pill pill--ghost">597 transacciones</span>
+        <span class="pill">3 vistas · 3 fuentes</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Secciones del dashboard">
+      <button class="tab is-active" id="tab-resumen" role="tab" aria-selected="true" aria-controls="resumen" data-tab="resumen" tabindex="0">Resumen ejecutivo</button>
+      <button class="tab" id="tab-transaccional" role="tab" aria-selected="false" aria-controls="transaccional" data-tab="transaccional" tabindex="-1">Análisis transaccional</button>
+      <button class="tab" id="tab-embudo" role="tab" aria-selected="false" aria-controls="embudo" data-tab="embudo" tabindex="-1">Embudo y redes</button>
+      <button class="tab" id="tab-metodologia" role="tab" aria-selected="false" aria-controls="metodologia" data-tab="metodologia" tabindex="-1">Metodología</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============================ RESUMEN ============================ -->
+    <section class="tab-panel is-active" id="resumen" role="tabpanel" aria-labelledby="tab-resumen">
+      <div class="panel-head">
+        <div>
+          <h2>Una lectura integrada del negocio</h2>
+          <p>Ventas, embudo web y redes sociales en una sola vista. La base transaccional explica qué se vendió; el embudo explica dónde se pierde la demanda; las redes muestran de dónde llega el tráfico.</p>
+        </div>
+        <span class="period">Datos al 30 de junio de 2026</span>
+      </div>
+
+      <div class="kpi-grid">
+        <article class="kpi">
+          <span class="label">Ventas totales</span>
+          <strong class="value" id="kpiVentas">$284,174.10</strong>
+          <span class="hint">597 operaciones · ene–jun</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Pedidos</span>
+          <strong class="value" id="kpiPedidos">597</strong>
+          <span class="hint">Una fila = una venta</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Ticket promedio</span>
+          <strong class="value" id="kpiTicket">$476.00</strong>
+          <span class="hint">Media del monto por pedido</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Margen contribución</span>
+          <strong class="value" id="kpiMargen">$246,103.58</strong>
+          <span class="hint" id="kpiMargenPct">Margen 86.60 % · CAC $38,070.52</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Conversión global</span>
+          <strong class="value" id="kpiConversion">9.45 %</strong>
+          <span class="hint">1,740 compras / 18,420 vistas</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Abandono vista→carrito</span>
+          <strong class="value" id="kpiAbandono">66.26 %</strong>
+          <span class="hint">12,205 usuarios no avanzaron</span>
+        </article>
+      </div>
+
+      <div class="grid grid--wide">
+        <article class="card">
+          <h3>Ventas por mes</h3>
+          <p class="sub">Monto acumulado por fecha de transacción. Abril concentra el pico del periodo.</p>
+          <div class="chart-wrap"><canvas id="monthlyChart" aria-label="Gráfico de ventas por mes" role="img"></canvas></div>
+        </article>
+        <article class="card">
+          <h3>Ventas por canal</h3>
+          <p class="sub">Marketplace, sitio web y app móvil concentran 64.1 % de las ventas.</p>
+          <div class="chart-wrap"><canvas id="channelChart" aria-label="Gráfico de ventas por canal" role="img"></canvas></div>
+        </article>
+      </div>
+
+      <div class="grid grid--wide">
+        <article class="card">
+          <h3>Participación por dispositivo</h3>
+          <p class="sub">41.4 % de las transacciones se registraron en móvil; 10.9 % quedó sin especificar.</p>
+          <div class="chart-wrap"><canvas id="deviceChart" aria-label="Gráfico de participación por dispositivo" role="img"></canvas></div>
+        </article>
+        <article class="card">
+          <h3>Hallazgos que orientan la decisión</h3>
+          <p class="sub">Tres señales que cambian la prioridad comercial.</p>
+          <ul class="insights">
+            <li>
+              <span class="num">1</span>
+              <div><strong>La fuga está antes del carrito.</strong><span>66.26 % de quienes vieron un producto no lo agregaron. Mejorar la ficha de producto tiene más impacto inmediato que comprar más tráfico.</span></div>
+            </li>
+            <li>
+              <span class="num">2</span>
+              <div><strong>El móvil es el canal de decisión.</strong><span>41.4 % de las transacciones y el mayor volumen de tráfico social llegan desde el teléfono. La experiencia móvil es prioritaria.</span></div>
+            </li>
+            <li>
+              <span class="num">3</span>
+              <div><strong>TikTok atrae, pero no todo convierte.</strong><span>12.94 % de engagement y 2.96 % de clic al sitio: lidera ambas métricas, aunque la brecha indica que reaccionar no es lo mismo que comprar.</span></div>
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="callout">
+        <strong>Decisión sugerida:</strong> intervenir primero la ficha de producto en móvil, probar llamados a la acción en TikTok e Instagram y auditar los picos atípicos de abril antes de escalar presupuesto.
+      </div>
+    </section>
+
+    <!-- ======================== TRANSACCIONAL ========================= -->
+    <section class="tab-panel" id="transaccional" role="tabpanel" aria-labelledby="tab-transaccional">
+      <div class="panel-head">
+        <div>
+          <h2>Análisis transaccional</h2>
+          <p>Explora las 597 ventas por periodo, canal, dispositivo y producto. Los filtros actualizan los indicadores, las gráficas y las tablas de esta vista.</p>
+        </div>
+        <span class="period">Base: 597 transacciones</span>
+      </div>
+
+      <div class="filters" aria-label="Filtros de la vista transaccional">
+        <div class="field">
+          <label for="filterMes">Periodo</label>
+          <select id="filterMes"><option value="all">Todos los meses</option></select>
+        </div>
+        <div class="field">
+          <label for="filterCanal">Canal</label>
+          <select id="filterCanal"><option value="all">Todos los canales</option></select>
+        </div>
+        <div class="field">
+          <label for="filterDispositivo">Dispositivo</label>
+          <select id="filterDispositivo"><option value="all">Todos los dispositivos</option></select>
+        </div>
+        <div class="field">
+          <label for="filterProducto">Producto</label>
+          <select id="filterProducto"><option value="all">Todos los productos</option></select>
+        </div>
+        <button class="btn-reset" id="resetFilters" type="button">Limpiar filtros</button>
+      </div>
+      <p class="filter-status" id="filterStatus">Mostrando 597 de 597 transacciones (100.00 %).</p>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+        <article class="kpi">
+          <span class="label">Ventas filtradas</span>
+          <strong class="value" id="fVentas">$284,174.10</strong>
+          <span class="hint">Monto de la selección</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Pedidos filtrados</span>
+          <strong class="value" id="fPedidos">597</strong>
+          <span class="hint">Transacciones de la selección</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Ticket promedio</span>
+          <strong class="value" id="fTicket">$476.00</strong>
+          <span class="hint">Ventas / pedidos</span>
+        </article>
+        <article class="kpi">
+          <span class="label">CAC total</span>
+          <strong class="value" id="fCac">$38,070.52</strong>
+          <span class="hint">Costo de adquisición</span>
+        </article>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Ventas por mes</h3>
+          <p class="sub">Serie mensual de la selección actual.</p>
+          <div class="chart-wrap"><canvas id="filteredMonthlyChart" aria-label="Gráfico de ventas mensuales filtradas" role="img"></canvas></div>
+        </article>
+        <article class="card">
+          <h3>Ventas por canal</h3>
+          <p class="sub">Comparación directa entre los seis canales.</p>
+          <div class="chart-wrap"><canvas id="filteredChannelChart" aria-label="Gráfico de ventas por canal filtradas" role="img"></canvas></div>
+        </article>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Monto vs. costo de adquisición</h3>
+          <p class="sub">Cada punto es una transacción; el color identifica el canal.</p>
+          <div class="chart-wrap tall"><canvas id="scatterChart" aria-label="Gráfico de dispersión de monto contra costo de adquisición" role="img"></canvas></div>
+        </article>
+        <article class="card">
+          <h3>Ventas por producto</h3>
+          <p class="sub">Contribución de cada categoría de producto al monto total.</p>
+          <div class="chart-wrap tall"><canvas id="productChart" aria-label="Gráfico de ventas por producto" role="img"></canvas></div>
+        </article>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Top fechas por venta</h3>
+          <p class="sub">Los seis días con mayor monto acumulado en la selección.</p>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Fechas con mayor monto de venta</caption>
+              <thead><tr><th>Fecha</th><th class="num">Pedidos</th><th class="num">Monto</th><th class="num">% del total</th><th>Calidad</th></tr></thead>
+              <tbody id="topDatesBody"></tbody>
+            </table>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Transacciones marcadas para revisión</h3>
+          <p class="sub">5 registros con la bandera <code>monto_revisar</code> de U2S07. Tres explican los picos de abril.</p>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Transacciones marcadas con monto_revisar</caption>
+              <thead><tr><th>Fecha</th><th>Canal</th><th>Producto</th><th>Dispositivo</th><th class="num">Monto</th></tr></thead>
+              <tbody id="flaggedBody"></tbody>
+            </table>
+          </div>
+          <p class="note">La bandera no elimina la transacción: la señala para auditoría. Los agregados del dashboard se calculan con todos los registros y se recomienda revisar estos cinco antes de decisiones de inversión.</p>
+        </article>
+      </div>
+
+      <div style="margin-top:14px">
+        <button class="btn-reset" id="downloadCsv" type="button">Descargar selección en CSV</button>
+      </div>
+    </section>
+
+    <!-- =========================== EMBUDO ============================ -->
+    <section class="tab-panel" id="embudo" role="tabpanel" aria-labelledby="tab-embudo">
+      <div class="panel-head">
+        <div>
+          <h2>Embudo y redes sociales</h2>
+          <p>El embudo web (U2S14) y las métricas sociales son un universo independiente de las 597 transacciones. No se suman: se interpretan en paralelo para explicar el recorrido digital.</p>
+        </div>
+        <span class="period">18,420 vistas → 1,740 compras</span>
+      </div>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+        <article class="kpi">
+          <span class="label">Vistas de producto</span>
+          <strong class="value">18,420</strong>
+          <span class="hint">Inicio del embudo web</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Compras completadas</span>
+          <strong class="value">1,740</strong>
+          <span class="hint">Fin del embudo web</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Conversión global</span>
+          <strong class="value" id="funnelConv">9.45 %</strong>
+          <span class="hint">Compras / vistas</span>
+        </article>
+        <article class="kpi">
+          <span class="label">Mayor abandono</span>
+          <strong class="value" id="funnelDrop">66.26 %</strong>
+          <span class="hint">Vista → carrito</span>
+        </article>
+      </div>
+
+      <div class="grid grid--wide">
+        <article class="card">
+          <h3>Embudo de conversión</h3>
+          <p class="sub">Usuarios que llegan a cada paso. La caída más fuerte ocurre antes del carrito.</p>
+          <div class="chart-wrap tall"><canvas id="funnelChart" aria-label="Gráfico de embudo de conversión" role="img"></canvas></div>
+        </article>
+        <article class="card">
+          <h3>Conversión y abandono por paso</h3>
+          <p class="sub">Tasas calculadas contra el paso inmediato anterior.</p>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Tasas de conversión y abandono del embudo</caption>
+              <thead><tr><th>Paso</th><th class="num">Usuarios</th><th class="num">Conversión</th><th class="num">Abandono</th></tr></thead>
+              <tbody id="funnelBody"></tbody>
+            </table>
+          </div>
+          <p class="note">La conversión global es 1,740 / 18,420 = 9.45 %. El abandono de cada paso se calcula como 1 − conversión del paso.</p>
+        </article>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Redes sociales: tasas comparables</h3>
+          <p class="sub">Engagement = interacciones / alcance. Clic al sitio = clics / alcance.</p>
+          <div class="chart-wrap"><canvas id="socialRateChart" aria-label="Gráfico comparativo de engagement y clic al sitio por red social" role="img"></canvas></div>
+        </article>
+        <article class="card">
+          <h3>Lectura de redes</h3>
+          <p class="sub">TikTok lidera alcance, engagement y clics; la brecha con la compra sigue abierta.</p>
+          <ul class="insights">
+            <li>
+              <span class="num">1</span>
+              <div><strong>TikTok concentra la conversación.</strong><span>74,600 de alcance, 9,650 interacciones y 2,210 clics: supera a Instagram y Facebook en las tres métricas.</span></div>
+            </li>
+            <li>
+              <span class="num">2</span>
+              <div><strong>Engagement alto no equivale a tráfico de calidad.</strong><span>12.94 % de engagement frente a 2.96 % de clic al sitio: la mayoría reacciona dentro de la app sin llegar a la tienda.</span></div>
+            </li>
+            <li>
+              <span class="num">3</span>
+              <div><strong>La prueba debe medir el paso siguiente.</strong><span>Antes de escalar presupuesto, hay que comparar clic → carrito y clic → compra por plataforma, no solo alcance.</span></div>
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <h3>Detalle por plataforma</h3>
+        <p class="sub">Métricas base del reporte social de TiendaNova (U2S14).</p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Métricas sociales por plataforma</caption>
+            <thead><tr><th>Plataforma</th><th class="num">Alcance</th><th class="num">Impresiones</th><th class="num">Interacciones</th><th class="num">Clics al sitio</th><th class="num">Engagement</th><th class="num">Clic / alcance</th></tr></thead>
+            <tbody id="socialBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="social-grid" id="socialCards" aria-label="Resumen por plataforma social"></div>
+    </section>
+
+    <!-- ========================= METODOLOGÍA ========================= -->
+    <section class="tab-panel" id="metodologia" role="tabpanel" aria-labelledby="tab-metodologia">
+      <div class="panel-head">
+        <div>
+          <h2>Metodología y trazabilidad</h2>
+          <p>Cómo se construyó el dashboard, de dónde salen los datos y qué límites tiene la evidencia. Esta vista permite auditar las cifras sin depender de la memoria del autor.</p>
+        </div>
+        <span class="period">U2S07 → U2S16</span>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Ruta de construcción</h3>
+          <p class="sub">La cadena de BI se mantuvo; cambió el dominio y maduró el modelo.</p>
+          <ol class="method-list">
+            <li><div><strong>Fuentes y limpieza</strong><span>CSV de transacciones TiendaNova, embudo web y métricas sociales. Estandarización de fechas y bandera <code>monto_revisar</code> en Python/Pandas (U2S07).</span></div></li>
+            <li><div><strong>Modelo multidimensional</strong><span>Esquema estrella con Hechos_Transacciones y cuatro dimensiones: Tiempo, Canal, Producto y Dispositivo. 597 hechos y 0 claves foráneas nulas (U2S09).</span></div></li>
+            <li><div><strong>Dashboard</strong><span>Reporte en Looker Studio con tres vistas: análisis transaccional, resumen ejecutivo y embudo y redes (U2S12–U2S15).</span></div></li>
+            <li><div><strong>Lectura ejecutiva</strong><span>Integración de ventas, conversión y redes en una narrativa de decisiones con recomendaciones medibles (U2S16).</span></div></li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <h3>Fuentes de datos</h3>
+          <p class="sub">Cada cifra del dashboard se puede rastrear a un archivo del curso.</p>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Fuentes de datos del dashboard</caption>
+              <thead><tr><th>Fuente</th><th>Periodo</th><th class="num">Registros</th><th>Uso</th></tr></thead>
+              <tbody>
+                <tr><td>Transacciones TiendaNova</td><td>ene–jun 2026</td><td class="num">597</td><td>Ventas, ticket, canal, dispositivo y CAC</td></tr>
+                <tr><td>Embudo de conversión</td><td>Periodo analizado</td><td class="num">4 pasos</td><td>Vistas, carrito, checkout y compras</td></tr>
+                <tr><td>Métricas sociales</td><td>Periodo analizado</td><td class="num">3 redes</td><td>Alcance, interacciones y clics</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Los datasets de embudo y redes son independientes de la base transaccional; no representan los mismos 597 pedidos. Se muestran en paralelo, no se suman.</p>
+        </article>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Definiciones de KPI</h3>
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Fórmulas de los indicadores</caption>
+              <thead><tr><th>Indicador</th><th>Fórmula</th></tr></thead>
+              <tbody>
+                <tr><td>Ticket promedio</td><td>Ventas totales / pedidos</td></tr>
+                <tr><td>Margen de contribución</td><td>Monto de venta − costo de adquisición</td></tr>
+                <tr><td>Conversión global</td><td>Compras completadas / vistas de producto</td></tr>
+                <tr><td>Abandono por paso</td><td>1 − (usuarios del paso / usuarios del paso anterior)</td></tr>
+                <tr><td>Engagement social</td><td>Interacciones / alcance</td></tr>
+                <tr><td>Clic al sitio</td><td>Clics al sitio / alcance</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Calidad y límites de la evidencia</h3>
+          <ul class="insights">
+            <li><span class="num">!</span><div><strong>5 registros marcados.</strong><span>0.84 % de las transacciones tienen <code>monto_revisar</code>; tres coinciden con los picos de abril. Se recomienda auditarlos antes de decisiones de inversión.</span></div></li>
+            <li><span class="num">!</span><div><strong>10.9 % sin dispositivo.</strong><span>65 transacciones no especifican dispositivo. La lectura móvil es válida, pero el dato invita a corregir la captura.</span></div></li>
+            <li><span class="num">!</span><div><strong>Sin atribución causal.</strong><span>El dashboard describe asociaciones y embudo; no prueba que una campaña haya causado una venta. Las pruebas A/B son el siguiente paso.</span></div></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="grid grid--2">
+        <article class="card">
+          <h3>Enlaces del proyecto</h3>
+          <p class="sub">Todas las vistas de este dashboard están disponibles sin inicio de sesión.</p>
+          <ul class="link-list">
+            <li><a href="https://datastudio.google.com/reporting/3cd1a2b0-81ae-4eed-bff6-bb422527b758" target="_blank" rel="noopener">Reporte original en Looker Studio <span>requiere cuenta institucional</span></a></li>
+            <li><a href="portafolio.pdf" target="_blank" rel="noopener">Portafolio de evidencias U2S16 (PDF) <span>documento completo</span></a></li>
+            <li><a href="https://github.com/BryanYaveth/tiendanova-bi-u2s16" target="_blank" rel="noopener">Repositorio del dashboard <span>código y datos</span></a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Nota de alcance</h3>
+          <p class="sub">Este tablero es una vista de consulta construida con los mismos datos del reporte de Looker Studio U2S15. No altera las cifras originales; las reorganiza para que cualquier lector pueda auditarlas sin instalar software ni iniciar sesión.</p>
+          <div class="callout"><strong>Uso recomendado:</strong> abrir la vista <em>Resumen ejecutivo</em> para la lectura de dirección; usar <em>Análisis transaccional</em> para filtros y auditoría; y <em>Embudo y redes</em> para la conversación de marketing.</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div><strong>TiendaNova · Dashboard ejecutivo BI</strong> · Bryan Yaveth Olvera Herrera · U2S16</div>
+      <div>Fuente: datasets U2S07, U2S09, U2S12, U2S14 y U2S15 · <a href="https://datastudio.google.com/reporting/3cd1a2b0-81ae-4eed-bff6-bb422527b758" target="_blank" rel="noopener">Looker Studio</a></div>
+    </div>
+  </footer>
+
+  <script src="assets/chart.umd.min.js"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
